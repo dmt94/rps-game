@@ -1,8 +1,10 @@
 const jsConfetti = new JSConfetti();
 const WINNING_SCORE = 3;
+const FIRST_STREAK_AWARD = 3;
 let winStreak = 0;
 let threeStreaks = document.getElementById("three-award-streak");
-let streakWin = document.querySelector('.img-div-win');
+let exitBtnReward = document.getElementById("exit-reward");
+
 
 /* user buttons */
 let lapisUserButton = document.getElementById("lapis-user");
@@ -184,8 +186,9 @@ function endGame() {
     clearScore();
     userBtnContainer.style.visibility = "hidden";
     updateWinStreak();
-    if (winStreak === 1) {
+    if (winStreak === FIRST_STREAK_AWARD) {
       reachThreeStreaks();
+      exitBtn();
       setTimeout(() => {
         threeStreaks.style.visibility = "hidden";
       }, 8000)
@@ -195,11 +198,16 @@ function endGame() {
   }
 }
 
-
 function reachThreeStreaks() {
   threeStreaks.style.visibility = "visible";
   threeStreaks.style.animation = "bounce";
   threeStreaks.style.animationDuration = "2s";
+}
+
+function exitBtn()  {
+  exitBtnReward.addEventListener("click", () => {
+    threeStreaks.style.visibility = "hidden";
+  })
 }
 
 
