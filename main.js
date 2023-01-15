@@ -5,10 +5,15 @@ const GAME_RULES = {
   scalpellus: {lapis: "lose", papyrus: "win", scalpellus: "tie"}, 
   papyrus: {lapis: "win", papyrus: "tie", scalpellus: "lose"}, 
 }
-
+/* user buttons */
 let lapisUserButton = document.getElementById("lapis-user");
 let papyrusUserButton = document.getElementById("papyrus-user");
 let scalpellusButton = document.getElementById("scalpellus-user");
+
+/* computer buttons */
+let lapisCompBtn = document.getElementById("lapis-computer");
+let papyrusCompBtn = document.getElementById("papyrus-computer");
+let scalpCompBtn = document.getElementById("scalpellus-computer");
 
 let userChoiceText = document.getElementById("user-choice");
 let resultText = document.getElementById("result-instruction");
@@ -21,6 +26,7 @@ let userScore = document.getElementById("user-score");
 let computerNumScore = 0;
 let userNumScore = 0;
 
+let compBtnChoices = [lapisCompBtn, papyrusCompBtn, scalpCompBtn];
 let choices = [lapisUserButton, papyrusUserButton, scalpellusButton];
 let mainChoices = ["lapis", "papyrus", "scalpellus"];
 let userChoice = "";
@@ -32,6 +38,22 @@ function computerChooses() {
 
 function indicateComputerChoice() {
   computerChoiceText.innerText = computerChoice;
+}
+
+function clearComputerBtnStyle() {
+  compBtnChoices.forEach(button => {
+    button.style.backgroundColor = "#fffdf3";
+  })
+}
+
+function displayComputerChoice() {
+  if (computerChoice === "lapis") {
+    lapisCompBtn.style.backgroundColor = "#a9f5ff";
+  } else if (computerChoice === "papyrus") {
+    papyrusCompBtn.style.backgroundColor = "#f5f537";
+  } else if (computerChoice === "scalpellus") {
+    scalpCompBtn.style.backgroundColor = "#f44850";
+  }
 }
 
 function indicateUserChoice() {
@@ -62,7 +84,11 @@ function listenUserChoice() {
     choice.addEventListener("click", () => {
       computerChooses();
       indicateComputerChoice();
+      displayComputerChoice();
       determineScore(userChoice, computerChoice);
+      setTimeout(() => {
+        clearComputerBtnStyle();
+      }, 1000)
     })
   })
 }
@@ -125,6 +151,8 @@ function anotherRound() {
     playAgain.style.display = "none";
     computerScore.innerText = computerNumScore;
     userScore.innerText = userNumScore;
+    computerChoiceText.innerText = "...";
+    userChoiceText.innerText = "...";
   })
 }
 
