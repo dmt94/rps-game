@@ -1,5 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #FDFFF6;
+  margin: 0;
+}
+
+header, 
+.responsive-container,
+.button-container, 
+.score-container,
+.score-div {
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  background-color: #1B1818;
+}
+
+/* win awards pop up */
+.img-div-win {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #ffffff;
+  justify-content: center;
+  position: absolute;
+  top: 240px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  visibility: hidden;
+  z-index: 5;
+}
+
+.img-div-win, .img-div-win h2 {
+  color:rgb(13, 13, 13);
+}
+
+.award-img {
+  width: 240px;
+  padding: 40px;
+}
+
 .player-title {
   border-radius: 10px;
   position: relative;
@@ -33,25 +79,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #FDFFF6;
-  margin: 0;
-}
-
-header, 
-.responsive-container,
-.button-container, 
-.score-container,
-.score-div {
-  display: flex;
-  justify-content: center;
-}
-
-header {
-  background-color: #1B1818;
 }
 
 .responsive-container, 
@@ -100,7 +127,8 @@ header {
   background-color: #E9E6D5;
 }
 
-.choice-text, 
+.choice-text,
+#top-instruction + h3, 
 .result-container h3, 
 #top-instruction,
 #user-indicator,
@@ -112,6 +140,11 @@ header {
 
 #top-instruction {
   font-style: italic;
+}
+
+#win-streak {
+  color:#e35503;
+  font-size: 30px;
 }
 
 #computer-choice {
@@ -180,7 +213,4 @@ h2 {
 }
 #scalpellus-user:hover {
   background-color: #f44850;
-}
-
-@media screen and (max-width: 912px) {
 }

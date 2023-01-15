@@ -1,10 +1,9 @@
 const jsConfetti = new JSConfetti();
 const WINNING_SCORE = 3;
-const GAME_RULES = {
-  lapis: {lapis: "tie", papyrus: "lose", scalpellus: "win"}, 
-  scalpellus: {lapis: "lose", papyrus: "win", scalpellus: "tie"}, 
-  papyrus: {lapis: "win", papyrus: "tie", scalpellus: "lose"}, 
-}
+let winStreak = 0;
+let threeStreaks = document.getElementById("three-award-streak");
+let streakWin = document.querySelector('.img-div-win');
+
 /* user buttons */
 let lapisUserButton = document.getElementById("lapis-user");
 let papyrusUserButton = document.getElementById("papyrus-user");
@@ -22,18 +21,21 @@ let computerChoiceText = document.getElementById("computer-choice");
 
 let playAgain = document.getElementById("play-again");
 
+
+let winStreakText = document.getElementById("win-streak");
 let computerScore = document.getElementById("computer-score");
 let userScore = document.getElementById("user-score");
 let computerNumScore = 0;
 let userNumScore = 0;
 
-let compBtnChoices = [lapisCompBtn, papyrusCompBtn, scalpCompBtn];
+
 let choices = [lapisUserButton, papyrusUserButton, scalpellusButton];
-let mainChoices = ["lapis", "papyrus", "scalpellus"];
+
 let userChoice = "";
 let computerChoice = "";
 
 function computerChooses() {
+  let mainChoices = ["lapis", "papyrus", "scalpellus"];
   computerChoice = mainChoices[Math.floor(Math.random() * mainChoices.length)];
 }
 
@@ -42,6 +44,7 @@ function indicateComputerChoice() {
 }
 
 function clearComputerBtnStyle() {
+  let compBtnChoices = [lapisCompBtn, papyrusCompBtn, scalpCompBtn];
   compBtnChoices.forEach(button => {
     button.style.backgroundColor = "#fffdf3";
   })
@@ -119,6 +122,11 @@ function displayScore() {
 }
 
 function determineScore(user, computer) {
+  const GAME_RULES = {
+    lapis: {lapis: "tie", papyrus: "lose", scalpellus: "win"}, 
+    scalpellus: {lapis: "lose", papyrus: "win", scalpellus: "tie"}, 
+    papyrus: {lapis: "win", papyrus: "tie", scalpellus: "lose"}, 
+  }
   let finalUserChoice = GAME_RULES[user];
   let userOutcome = finalUserChoice[computer];
   displayResult(userOutcome);
@@ -134,13 +142,20 @@ function outcome() {
   }
   endGame();
 }
+
+function updateWinStreak() {
+  winStreakText.innerText = String(winStreak);
+}
+
 function losingOutcome() {
+  winStreak = 0;
   jsConfetti.addConfetti({
     emojis: ['😟', '😭']
   })
   resultText.innerText = "SORRY! You lost the game...";
 }
 function winningOutcome() {
+  winStreak += 1;
   resultText.innerText = "YOU WON THE GAME! Congratulations!";
   jsConfetti.addConfetti({
     emojis: ['⭐️', '🏆', '🥳', '💫', '🎉']
@@ -155,6 +170,7 @@ function anotherRound() {
     userScore.innerText = userNumScore;
     computerChoiceText.innerText = "...";
     userChoiceText.innerText = "...";
+    resultText.innerText = "pick lapis, papyrus, or scalpellus";
   })
 }
 
@@ -167,10 +183,25 @@ function endGame() {
   if (computerNumScore === WINNING_SCORE || userNumScore === WINNING_SCORE) {
     clearScore();
     userBtnContainer.style.visibility = "hidden";
+    updateWinStreak();
+    if (winStreak === 1) {
+      reachThreeStreaks();
+      setTimeout(() => {
+        threeStreaks.style.visibility = "hidden";
+      }, 8000)
+    }
     playAgain.style.display = "inline";
     anotherRound();
   }
 }
+
+
+function reachThreeStreaks() {
+  threeStreaks.style.visibility = "visible";
+  threeStreaks.style.animation = "bounce";
+  threeStreaks.style.animationDuration = "2s";
+}
+
 
 //gameplay
 userChooses();
