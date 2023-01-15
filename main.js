@@ -1,3 +1,4 @@
+const jsConfetti = new JSConfetti();
 const WINNING_SCORE = 3;
 const GAME_RULES = {
   lapis: {lapis: "tie", papyrus: "lose", scalpellus: "win"}, 
@@ -12,6 +13,8 @@ let scalpellusButton = document.getElementById("scalpellus-user");
 let userChoiceText = document.getElementById("user-choice");
 let resultText = document.getElementById("result-instruction");
 let computerChoiceText = document.getElementById("computer-choice");
+
+let playAgain = document.getElementById("play-again");
 
 let computerScore = document.getElementById("computer-score");
 let userScore = document.getElementById("user-score");
@@ -49,9 +52,9 @@ function setUserChoice(userChoiceBtn) {
 }
 
 function userChooses() {
-  choices.forEach(choice => {
-    setUserChoice(choice);
-  })
+    choices.forEach(choice => {
+      setUserChoice(choice);
+    })
 }
 
 function listenUserChoice() {
@@ -93,8 +96,53 @@ function determineScore(user, computer) {
   let userOutcome = finalUserChoice[computer];
   displayResult(userOutcome);
   updateNumScore(userOutcome);
+  outcome();
 }
 
+function outcome() {
+  if (userNumScore === WINNING_SCORE) {
+    winningOutcome()
+  } else if (computerNumScore === WINNING_SCORE) {
+    losingOutcome();
+  }
+  endGame();
+}
+function losingOutcome() {
+  jsConfetti.addConfetti({
+    emojis: ['😟', '😭']
+  })
+  resultText.innerText = "SORRY! You lost the game...";
+}
+function winningOutcome() {
+  resultText.innerText = "YOU WON THE GAME! Congratulations!";
+  jsConfetti.addConfetti({
+    emojis: ['⭐️', '🏆', '🥳', '💫', '🎉']
+  })
+}
 
+function anotherRound() {
+  playAgain.addEventListener("click", () => {
+    playAgain.style.display = "none";
+    computerScore.innerText = computerNumScore;
+    userScore.innerText = userNumScore;
+  })
+}
+
+function clearScore() {
+  computerNumScore = 0;
+  userNumScore = 0;
+}
+
+function endGame() {
+  if (computerNumScore === WINNING_SCORE || userNumScore === WINNING_SCORE) {
+    clearScore();
+    playAgain.style.display = "inline";
+    anotherRound();
+  }
+}
+
+//gameplay
 userChooses();
 listenUserChoice();
+
+

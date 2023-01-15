@@ -1,5 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+.player-title {
+  border-radius: 10px;
+  position: relative;
+}
+
+.player-title-bg {
+  background-color: #12121168;
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  text-align: center;
+  border-radius: 10px;
+  top: 17px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+#play-again {
+  display: none;
+  color:#f5f2e7;
+  padding: 120px 5px;
+}
+
+#play-again:hover {
+  cursor: pointer;
+  color:#0e0d0d;
+  transition: all 300ms ease-in-out;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #FDFFF6;
@@ -35,7 +70,7 @@ header {
 .player-title h1 {
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 60px;
+  font-size: 50px;
   margin: 0;
 }
 
@@ -48,13 +83,6 @@ header {
   border: 2px solid rgb(25, 23, 23);
   border-radius: 5px;
   z-index: 2;
-}
-
-/* user */
-
-/* user win style */
-.result-container {
-  /* background-color: #dbffa9; */
 }
 
 .result-container h3 {
@@ -155,7 +183,4 @@ h2 {
 }
 
 @media screen and (max-width: 912px) {
-  .player-title h1 {
-    font-size: 50px;
-  }
 }

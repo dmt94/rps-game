@@ -10,14 +10,19 @@
 </head>
 
 <body>
+
   <header>
     <h2>Lapis, Papyrus, Scalpellus</h2>
   </header>
-  <div class="responsive-container">
+
+  <div id="canvas" class="responsive-container">
     <h3 id="top-instruction">best of 3 wins</h3>
     <div class="user-container">
       <div class="player-title">
-        <h1>your move</h1>
+        <div class="player-title-bg">
+          <h1 id="play-again">play again?</h1>
+        </div>
+        
       </div>
       <!--USER SCORE-->
       <div class="score-container">
@@ -91,15 +96,13 @@
           <h1 id="computer-score"></h1>
         </div>
       </div>
-      <div class="player-title">
-        <h1>computer</h1>
-      </div>
     </div>
 
   </div>
 
 
-  <script src="./main.js"></script>
+  <script type="module" src="./main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </body>
 
 </html>
