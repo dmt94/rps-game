@@ -9,6 +9,7 @@ const GAME_RULES = {
 let lapisUserButton = document.getElementById("lapis-user");
 let papyrusUserButton = document.getElementById("papyrus-user");
 let scalpellusButton = document.getElementById("scalpellus-user");
+let userBtnContainer = document.getElementById("user-btn-container");
 
 /* computer buttons */
 let lapisCompBtn = document.getElementById("lapis-computer");
@@ -149,6 +150,7 @@ function winningOutcome() {
 function anotherRound() {
   playAgain.addEventListener("click", () => {
     playAgain.style.display = "none";
+    userBtnContainer.style.visibility = "visible";
     computerScore.innerText = computerNumScore;
     userScore.innerText = userNumScore;
     computerChoiceText.innerText = "...";
@@ -164,6 +166,7 @@ function clearScore() {
 function endGame() {
   if (computerNumScore === WINNING_SCORE || userNumScore === WINNING_SCORE) {
     clearScore();
+    userBtnContainer.style.visibility = "hidden";
     playAgain.style.display = "inline";
     anotherRound();
   }
