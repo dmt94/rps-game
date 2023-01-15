@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #FDFFF6;
+  margin: 0;
+}
+
+header, 
+.responsive-container,
+.button-container, 
+.score-container,
+.score-div {
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  background-color: #1B1818;
+}
+
+.responsive-container, 
+.computer-container,
+.score-div, 
+.player-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.responsive-container {
+  margin-bottom: 40px;
+}
+
+.player-title h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 60px;
+  margin: 0;
+}
+
+.score-container, 
+.result-container {
+  margin: 20px;
+}
+
+.result-container {
+  border: 2px solid rgb(25, 23, 23);
+  border-radius: 5px;
+  z-index: 2;
+}
+
+/* user */
+
+/* user win style */
+.result-container {
+  /* background-color: #dbffa9; */
+}
+
+.result-container h3 {
+  padding: 10px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.score-container .user-score-div {
+  background-color: #161615;
+  color:  #fffbe9;
+}
+
+.computer-score-div {
+  background-color: #E9E6D5;
+}
+
+.choice-text, 
+.result-container h3, 
+#top-instruction,
+#user-indicator,
+.score-div h4 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+#top-instruction {
+  font-style: italic;
+}
+
+#computer-choice {
+  color:#dc0b16;
+  font-weight: 900;
+}
+
+#user-choice {
+  color:#7dc91a;
+}
+
+.score-div {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  padding: 20px;
+  margin: 10px;
+  width: 120px;
+  height: 110px;
+}
+
+.score-div h4, .score-div h1 {
+  margin: 0;
+}
+.score-div h1 {
+  font-size: 90px;
+}
+.score-div h4 {
+  margin-top: 10px;
+}
+
+h2 {
+  color: #FDFFF6;
+}
+
+/* BUTTONS */
+
+.button-img {
+  width: 45px;
+  height: 50px;
+  padding: 10px;
+}
+.choice-btn {
+  border-radius: 50px;
+  background-color: #fffdf3;
+  border: 10px solid rgba(255, 255, 255, 0);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  margin: 10px;
+}
+
+#lapis-user:hover,
+#papyrus-user:hover,
+#scalpellus-user:hover
+ {
+  border: 10px solid white;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  transform: translate(0, 3px);
+  transition: all 200ms ease-in-out;
+}
+
+#lapis-user:hover {
+  background-color: #a9f5ff;
+}
+#papyrus-user:hover {
+  background-color: #f5f537;
+}
+#scalpellus-user:hover {
+  background-color: #f44850;
+}
+
+@media screen and (max-width: 912px) {
+  .player-title h1 {
+    font-size: 50px;
+  }
+}
