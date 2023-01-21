@@ -7,6 +7,7 @@ let exitBtnReward = document.getElementById("exit-reward");
 
 
 /* user buttons */
+let winLoseTieBg = document.querySelector('.result-container');
 let lapisUserButton = document.getElementById("lapis-user");
 let papyrusUserButton = document.getElementById("papyrus-user");
 let scalpellusButton = document.getElementById("scalpellus-user");
@@ -84,7 +85,7 @@ function userChooses() {
       setUserChoice(choice);
     })
 }
-
+/* Computer Listens to User Choice each time */
 function listenUserChoice() {
   choices.forEach(choice => {
     choice.addEventListener("click", () => {
@@ -102,10 +103,13 @@ function listenUserChoice() {
 function displayResult(outcome) {
   if (outcome === "tie") {
     resultText.innerText = "It's a tie!"
+    winLoseTieBg.style.backgroundColor = "#df7200";
   } else if (outcome === "lose") {
     resultText.innerText = "You lost this round :("
+    winLoseTieBg.style.backgroundColor = "#db1919";
   } else if (outcome === "win") {
     resultText.innerText = "You won this round!"
+    winLoseTieBg.style.backgroundColor = "#8ec276";
   }
 }
 
@@ -166,6 +170,7 @@ function winningOutcome() {
 
 function anotherRound() {
   playAgain.addEventListener("click", () => {
+    winLoseTieBg.style.backgroundColor = "#323431";
     playAgain.style.display = "none";
     userBtnContainer.style.visibility = "visible";
     computerScore.innerText = computerNumScore;
@@ -187,7 +192,7 @@ function endGame() {
     userBtnContainer.style.visibility = "hidden";
     updateWinStreak();
     if (winStreak === FIRST_STREAK_AWARD) {
-      reachThreeStreaks();
+      reachThreeStreak();
       exitBtn();
       setTimeout(() => {
         threeStreaks.style.visibility = "hidden";
@@ -198,7 +203,7 @@ function endGame() {
   }
 }
 
-function reachThreeStreaks() {
+function reachThreeStreak() {
   threeStreaks.style.visibility = "visible";
   threeStreaks.style.animation = "bounce";
   threeStreaks.style.animationDuration = "2s";
